@@ -1,7 +1,9 @@
 db = {
     101:{'name':'Jay', 'marks': 88, 'roll': 101, 'fees':20000},
     102:{'name':'Tom', 'marks': 80, 'roll': 102, 'fees':15000},
-    103:{'name':'Devid', 'marks': 77, 'roll': 103, 'fees':25000}
+    103:{'name':'Devid', 'marks': 77, 'roll': 103, 'fees':25000},
+    104:{'name':'Abhi', 'marks': 83, 'roll': 104, 'fees':28000},
+    105:{'name':'Chandu', 'marks': 84, 'roll': 105, 'fees':20000}
 }
 
 def dashboard():
@@ -13,6 +15,7 @@ def dashboard():
                         3) Update student record
                         4) Delete student record
                         5) Display student record
+                        6) Display student record
     """)
 
 def create_student():
@@ -76,8 +79,17 @@ def read_student_fees():
     for i in db:
         if db[i]['fees'] >= u_fees:
             print("|{r:^15}|{n:^15}|{m:^15}|{f:^15}|".format(r = db[i]['roll'], n =db[i]['name'], m = db[i]['marks'], f=db[i]['fees']))
-            print('*'*65)
-        
+            print('-'*65)
+
+def read_student_marks():
+    u_marks = eval(input("Enter student marks to display : "))
+    print("|{r:^15}|{n:^15}|{m:^15}|{f:^15}|".format(r = 'roll number', n ='Name', m = 'Marks', f='fees'))
+    print('-'*65)
+
+    for i in db:
+        if db[i]['marks'] >= u_marks:
+            print("|{r:^15}|{n:^15}|{m:^15}|{f:^15}|".format(r = db[i]['roll'], n =db[i]['name'], m = db[i]['marks'], f=db[i]['fees']))
+            print('-'*65)
 
 while True:
     dashboard()
@@ -110,6 +122,12 @@ while True:
             print('No student to display in database : ')
         else:
             read_student_fees()
+
+    elif choice == 6:
+        if len(db) == 0:
+            print('No student to display in database : ')
+        else:
+            read_student_marks()
 
     else:
         print("Invalid choice...")
